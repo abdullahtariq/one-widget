@@ -1,7 +1,7 @@
 {
   "name": "react-multi-form-input",
-  "version": "0.1.0",
-  "private": true,
+  "version": "0.1.1",
+  "private": false,
   "description": "React component for building forms quickly",
   "author": "Abdullah",
   "keywords": ["react", "components", "ui"],
