@@ -5,6 +5,15 @@ import swal from "sweetalert";
 /*
 1. simple file upload HTML5 
 2. Customize with button and possible to add icon or text
+
+Props : {
+	endPoint,
+	customClassName,
+	customIcon,
+	label,
+	title,
+	baseClassName
+}
 */
 const BasicFileUpload = (props) => {
 	const inputFileRef = useRef();
@@ -65,7 +74,7 @@ const BasicFileUpload = (props) => {
 					<input
 						required={props.required || false}
 						type='file'
-						className=''
+						className={props.baseClassName}
 						id={props.title}
 						spellCheck='false'
 						onChange={uploadFile}
