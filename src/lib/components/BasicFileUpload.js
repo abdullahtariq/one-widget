@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { uploadFileService } from '../../services/request';
+import { uploadFileService } from '../helpers/request';
 import swal from "sweetalert";
 
 /*
