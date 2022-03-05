@@ -4,7 +4,7 @@ const BASEURL = "https://snspk-server.herokuapp.com";  // TODO: Update to proces
 // get api
 export const getData = (URL, authKey) => {
 	return new Promise((resolve, reject) => {
-		fetch(BASEURL + URL, {
+		fetch(URL, {
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json",
@@ -30,7 +30,7 @@ export const postData = (URL, data, authkey) => {
 			authkey && sessionStorage.getItem("accessToken")
 				? "Bearer " + sessionStorage.getItem("accessToken")
 				: "";
-		fetch(BASEURL + URL, {
+		fetch(URL, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
@@ -49,7 +49,7 @@ export const postData = (URL, data, authkey) => {
 	});
 };
 
-export var uploadFileService = (file, url) => {
+export var uploadFileService = (file, URL) => {
 	return new Promise((resolve, reject) => {
 		try {
 			const req = new XMLHttpRequest();
@@ -66,7 +66,7 @@ export var uploadFileService = (file, url) => {
 					resolve(response);
 				}
 			};
-			req.open("POST", `${BASEURL}${url}`);
+			req.open("POST", `${URL}`);
 			req.send(formData);
 		} catch (error) {
 			console.log(error);
