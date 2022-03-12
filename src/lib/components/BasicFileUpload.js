@@ -8,6 +8,8 @@ import swal from "sweetalert";
 
 Props : {
 	endPoint,
+	setSetDisabled,
+	custom,
 	customClassName,
 	customIcon,
 	label,
