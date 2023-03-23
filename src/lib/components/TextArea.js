@@ -1,8 +1,7 @@
 import React from 'react';
 import { allLetter, validateNumber } from '../helpers/common';
 
-
-const DateInput = (props) => {
+const TextArea = (props) => {
     const handleChangeValue = (e, value) => {
 		let inputVal = '';
 		if (props.onlyLetters) {
@@ -25,7 +24,6 @@ const DateInput = (props) => {
 			props.setValue(val, e);
 		}
 	};
-
     const capitaliseText = inputVal => {
 		const capitalise = inputVal.split(' ').map(word => {
 			word = word.toLowerCase();
@@ -34,32 +32,29 @@ const DateInput = (props) => {
 
 		return capitalise.join(' ');
 	};
-
-
-
     return (
-
         <>
         
-        <div className={`inputs ${props.readOnly ? 'read-only' : ''}`}>
-					<i></i>
-					<input
-						required={props.require}
-						type={'date'}
-						className={`${props.id} `}
-						id={props.id}
-						value={props.defaultValue}
-						onChange={handleChangeValue}
-						readOnly={props.readOnly}
-						name={props.name}
-					/>
-					<label htmlFor='name'>
-						{props.label}{' '}
-						{props.require && <em className='text-red-400'>*</em>}
-					</label>
-				</div>
 
-        </>
+        <div className={`inputs  ${props.readOnly ? 'read-only' : ''}`}>
+        {props.icon && <i className={props.icon}></i>}
+        <textarea
+            required={props.require}
+            type={props.inputType || 'text'}
+            className={`${props.id} `}
+            id={props.id}
+            value={props.defaultValue}
+            spellCheck='false'
+            onChange={handleChangeValue}
+            readOnly={props.readOnly}
+            name={props.name}
+        ></textarea>
+        <label htmlFor='name'>
+            {props.label}{' '}
+            {props.require && <em className='text-red-400'>*</em>}
+        </label>
+    </div>
+    </>
     )
 }
-export default DateInput;
+export default TextArea;

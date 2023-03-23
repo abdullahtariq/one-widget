@@ -1,8 +1,32 @@
 import React from 'react';
+import { useState } from 'react';
 import { allLetter, validateNumber } from '../helpers/common';
+const Cnic = (props) => {
+    const [cnic, setCnic] = useState('');
 
-
-const DateInput = (props) => {
+    const handleCnic = event => {
+		event.preventDefault();
+		let v = null;
+		if (validateNumber(event)) {
+			v = event.target.value;
+		} else {
+			return false;
+		}
+		let last_char;
+		let full_string;
+		let new_char;
+		if (v.length === 6 && v.slice(-1) !== '-') {
+			last_char = v.slice(-1);
+			full_string = v.slice(0, -1);
+			new_char = full_string + '-' + last_char;
+		} else if (v.length === 14 && v.slice(-1) !== '-') {
+			last_char = v.slice(-1);
+			full_string = v.slice(0, -1);
+			new_char = full_string + '-' + last_char;
+		}
+		setCnic(new_char);
+		handleChangeValue(event, new_char);
+	};
     const handleChangeValue = (e, value) => {
 		let inputVal = '';
 		if (props.onlyLetters) {
@@ -25,7 +49,6 @@ const DateInput = (props) => {
 			props.setValue(val, e);
 		}
 	};
-
     const capitaliseText = inputVal => {
 		const capitalise = inputVal.split(' ').map(word => {
 			word = word.toLowerCase();
@@ -34,32 +57,33 @@ const DateInput = (props) => {
 
 		return capitalise.join(' ');
 	};
-
-
-
     return (
-
         <>
+       
         
-        <div className={`inputs ${props.readOnly ? 'read-only' : ''}`}>
-					<i></i>
+				<div className={`inputs ${props.readOnly ? 'read-only' : ''}`}>
+					{props.icon && <i className={props.icon}></i>}
+
 					<input
 						required={props.require}
-						type={'date'}
+						type={'text'}
 						className={`${props.id} `}
 						id={props.id}
-						value={props.defaultValue}
-						onChange={handleChangeValue}
+						value={props.defaultValue || cnic}
+						spellCheck='false'
+						maxLength='15'
+						onChange={handleCnic}
 						readOnly={props.readOnly}
 						name={props.name}
 					/>
+
 					<label htmlFor='name'>
 						{props.label}{' '}
 						{props.require && <em className='text-red-400'>*</em>}
 					</label>
 				</div>
-
-        </>
+			
+        </>   
     )
 }
-export default DateInput;
+export default Cnic;

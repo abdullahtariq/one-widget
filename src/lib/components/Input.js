@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useState } from 'react';
+import React from 'react';
 import { allLetter, validateNumber } from '../helpers/common';
 const InputField = (props) => {
   const handleChangeValue = (e) => {
@@ -19,6 +19,8 @@ const InputField = (props) => {
 		}
 	};
    return (
+      <>
+      
       <div className={`inputs ${props.readOnly ? 'read-only' : ''}`}>
          <input
             required={props.require}
@@ -30,10 +32,11 @@ const InputField = (props) => {
             onChange={handleChangeValue}
             readOnly={props.readOnly}
          />
-         <label htmlFor={props.label}>
-         {props.label} {props.require && <em className={`text-red-400 ${props?.optional?.asteriskClass}`}>*</em>}
+         <label htmlFor={props.lable}>
+         {props.lablel} {props.require && <em className={`text-red-400 ${props?.optional?.asteriskClass}`}>*</em>}
          </label>
 		</div>
+      </>
    )
 }
 export default InputField;

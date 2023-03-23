@@ -1,0 +1,64 @@
+.switch-btn {
+    display: flex;
+    border: none;
+    background: none;
+    justify-content: left;
+    min-width: 200px; }
+    .switch-btn .switch {
+      position: relative;
+      display: inline-block;
+      width: 52px;
+      height: 26px; }
+      .switch-btn .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0; }
+    .switch-btn .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      border-radius: 5px;
+      -webkit-transition: .4s;
+      transition: .4s; }
+      .switch-btn .slider:before {
+        position: absolute;
+        content: "";
+        height: 20px;
+        width: 20px;
+        left: 3px;
+        bottom: 3px;
+        background-color: white;
+        -webkit-transition: .4s;
+        transition: .4s; }
+    .switch-btn input:checked + .slider {
+      background-color: #405189; }
+      .switch-btn input:checked + .slider:before {
+        -webkit-transform: translateX(26px);
+        -ms-transform: translateX(26px);
+        transform: translateX(26px); }
+    .switch-btn input:focus + .slider {
+      box-shadow: 0 0 1px #0bcec1; }
+  
+  
+  
+  
+  
+  .switch-btn {
+    display: flex;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    justify-content: left; }
+    .switch-btn .switch {
+      position: relative;
+      display: inline-block;
+      width: 52px;
+      height: 26px; }
+      .switch-btn .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0; }
+  

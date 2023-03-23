@@ -1,8 +1,10 @@
 import React from 'react';
 import { allLetter, validateNumber } from '../helpers/common';
+import {useState} from 'react';
 
+const Password = (props) => {
+    const [passwordType, setPasswordType] = useState('password');
 
-const DateInput = (props) => {
     const handleChangeValue = (e, value) => {
 		let inputVal = '';
 		if (props.onlyLetters) {
@@ -25,6 +27,7 @@ const DateInput = (props) => {
 			props.setValue(val, e);
 		}
 	};
+  
 
     const capitaliseText = inputVal => {
 		const capitalise = inputVal.split(' ').map(word => {
@@ -35,31 +38,69 @@ const DateInput = (props) => {
 		return capitalise.join(' ');
 	};
 
-
-
     return (
-
         <>
         
-        <div className={`inputs ${props.readOnly ? 'read-only' : ''}`}>
-					<i></i>
+        <div
+					className={`inputs force-active ${
+						props.readOnly ? 'read-only' : ''
+					
+					}`
+			
+				}
+				>
+					{props.icon && <i className={props.icon}></i>}
+
 					<input
+						ref={inputElement => {
+							// constructs a new function on each render
+							if (inputElement && props.autoFocus) {
+								//inputElement.focus();
+								props.autoFocus(inputElement)
+							}
+						}}
 						required={props.require}
-						type={'date'}
+						type={passwordType}
 						className={`${props.id} `}
 						id={props.id}
 						value={props.defaultValue}
+						spellCheck='false'
 						onChange={handleChangeValue}
 						readOnly={props.readOnly}
+						
 						name={props.name}
 					/>
 					<label htmlFor='name'>
 						{props.label}{' '}
 						{props.require && <em className='text-red-400'>*</em>}
 					</label>
+					<div
+						className='show-password align-center gap-10'
+						onClick={() => {
+							passwordType === 'password'
+								? setPasswordType('text')
+								: setPasswordType('password');
+						}}
+					>
+						<label class='switch s-0' style={{ display: 'block' }}>
+							<input
+								id='tools'
+								type='checkbox'
+								name='fulfil_documents'
+								onclick='switchOne()'
+								value='1'
+							/>
+							<span
+								class={
+									passwordType === 'password'
+										? 'icon-show-password'
+										: 'icon-hide-password'
+								}
+							></span>
+						</label>
+					</div>
 				</div>
-
-        </>
+                </>
     )
 }
-export default DateInput;
+export default Password;
